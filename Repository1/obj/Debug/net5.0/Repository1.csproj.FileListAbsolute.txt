@@ -1,0 +1,16 @@
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\bin\Debug\net5.0\Repository1.exe
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\bin\Debug\net5.0\Repository1.deps.json
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\bin\Debug\net5.0\Repository1.runtimeconfig.json
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\bin\Debug\net5.0\Repository1.runtimeconfig.dev.json
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\bin\Debug\net5.0\Repository1.dll
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\bin\Debug\net5.0\ref\Repository1.dll
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\bin\Debug\net5.0\Repository1.pdb
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\obj\Debug\net5.0\Repository1.csproj.AssemblyReference.cache
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\obj\Debug\net5.0\Repository1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\obj\Debug\net5.0\Repository1.AssemblyInfoInputs.cache
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\obj\Debug\net5.0\Repository1.AssemblyInfo.cs
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\obj\Debug\net5.0\Repository1.csproj.CoreCompileInputs.cache
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\obj\Debug\net5.0\Repository1.dll
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\obj\Debug\net5.0\ref\Repository1.dll
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\obj\Debug\net5.0\Repository1.pdb
+C:\Users\georgiana.boghiu\source\repos\Repository1\Repository1\obj\Debug\net5.0\Repository1.genruntimeconfig.cache
