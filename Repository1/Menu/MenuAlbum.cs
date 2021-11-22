@@ -9,9 +9,9 @@ namespace Repository1.Menu
     {
         private Album Album { get; set; }
 
-        public MenuAlbum(Album a,IAlbumRepository repository):base(repository)
+        public MenuAlbum(Album album,IAlbumRepository repository):base(repository)
         {
-            Album = a;
+            Album = album;
             Options = GetOptions();
         }
 

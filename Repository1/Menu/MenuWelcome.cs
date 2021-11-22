@@ -19,7 +19,7 @@ namespace Repository1.Menu
 
         private void GetFileNames()
         {
-            string[] fileEntries = Directory.GetFiles("../../../CSV");
+            var fileEntries = Directory.GetFiles("../../../CSV");
             string fileName;
             foreach (var file in fileEntries)
             {
@@ -38,7 +38,7 @@ namespace Repository1.Menu
 
         public override void Show()
         {
-            bool isValid = false;
+            var isValid = false;
             string fileName;
             string path;
             AlbumRepository repository;
