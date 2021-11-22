@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<Albums xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Album>
+    <Id>1</Id>
+    <Artist>Palaye Royale</Artist>
+    <Title>Boom Boom Room (Side A)</Title>
+    <Year>2016</Year>
+    <Genre>Rock</Genre>
+    <Sales>389402</Sales>
+    <Owned>true</Owned>
+    <RecordLabel>Summerian Records</RecordLabel>
+  </Album>
+  <Album>
+    <Id>2</Id>
+    <Artist>Palaye Royale</Artist>
+    <Title>Boom Boom Room (Side B)</Title>
+    <Year>2018</Year>
+    <Genre>Rock</Genre>
+    <Sales>8734902</Sales>
+    <Owned>false</Owned>
+    <RecordLabel>Summerian Records</RecordLabel>
+  </Album>
+  <Album>
+    <Id>3</Id>
+    <Artist>Madonna</Artist>
+    <Title>Songs</Title>
+    <Year>2001</Year>
+    <Genre>Pop</Genre>
+    <Sales>783628</Sales>
+    <Owned>false</Owned>
+    <RecordLabel>Atlantic</RecordLabel>
+  </Album>
+</Albums>

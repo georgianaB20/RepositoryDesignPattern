@@ -1,16 +1,18 @@
 using System;
 using System.Collections.Generic;
 using Xunit;
+using Repository1.AlbumRepositories;
+using Repository1.Entities;
 
 namespace Repository1.Tests
 {
     public class AlbumRepositoryTests
     {
-        private readonly AlbumRepository Repository=new(@"../../../AlbumsTest.csv");
+        private readonly CSVAlbumRepository Repository=new(@"../../../AlbumsTest.csv");
        
         [Theory]
         [InlineData(1)]
-        public void GetById_ShouldReturnAlbum(int id) {
+        public void GetById_GivenValidId_ThenReturnsAlbumOfSameId(int id) {
             Album result = Repository.GetById(id);
 
             Assert.Equal(id, result.Id);
@@ -18,7 +20,7 @@ namespace Repository1.Tests
 
         [Theory]
         [InlineData(45)]
-        public void GetById_ShouldReturnNull(int id) {
+        public void GetById_GivenInvalidId_ShouldReturnNull(int id) {
             Album actual = Repository.GetById(id);
 
             Assert.Null(actual);
@@ -26,7 +28,7 @@ namespace Repository1.Tests
 
         [Theory]
         [MemberData(nameof(AlbumTestData))]
-        public void InsertNewAlbum_ShouldReturnTrue(Album album)
+        public void Insert_GivenNewValidAlbum_ThenReturnsTrue(Album album)
         {
             bool result = Repository.Insert(album);
 
@@ -37,12 +39,14 @@ namespace Repository1.Tests
         {
             yield return new object[] { new Album("Madonna", "New songs", 2001, "Pop", 40000, false, "Atlantic") };
             yield return new object[] { new Album("Michael Jackson", "Dangerous", 1997, "Pop", 3018372, true, "Best Record Label") };
+            yield return new object[] { new Album(null, null, 0, null, 0, false, null) };
+
         }
 
         [Theory]
         [InlineData(30)]
         [InlineData(57)]
-        public void DeleteAlbum_ShouldReturnFalse(int albumId) 
+        public void Delete_GivenInvalidId_ThenReturnsFalse(int albumId) 
         {
             bool actual = Repository.Delete(albumId);
 
@@ -52,7 +56,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData(15)]
         [InlineData(1)]
-        public void DeleteAlbum_ShouldReturnTrue(int albumId) 
+        public void Delete_GivenValidId_ThenReturnsTrue(int albumId) 
         { 
             bool actual = Repository.Delete(albumId);
 
@@ -61,7 +65,7 @@ namespace Repository1.Tests
 
         [Theory]
         [MemberData(nameof(AlbumTestData))]
-        public void UpdateAlbum_ShouldReturnTrue(Album album) 
+        public void Update_GivenAlbumWithExistingId_ThenReturnsTrue(Album album) 
         {
             album.Id = 1;
 
@@ -72,7 +76,7 @@ namespace Repository1.Tests
 
         [Theory]
         [MemberData(nameof(AlbumTestData))]
-        public void UpdateAlbum_ShouldReturnFalse(Album album)
+        public void Update_GivenAlbumWithNonExistingId_ThenReturnsFalse(Album album)
         {
             album.Id = -7;
 
@@ -84,7 +88,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData("The Neighbourhood")]
         [InlineData("Palaye Royale")]
-        public void GetByArtist_ShouldReturnListOfAlbums(string expected)
+        public void GetByArtist_GivenExistingArtist_ThenReturnsListOfAlbumsOfArtist(string expected)
         {
             IEnumerable<Album> list = Repository.GetByArtist(expected);
             string actual = ((List<Album>)list)[0].Artist;
@@ -96,7 +100,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData("sdgsfsfs")]
         [InlineData("Not an artist")]
-        public void GetByArtist_ShouldReturnEmptyList(string artist)
+        public void GetByArtist_GivenNonExistingArtist_ThenReturnsEmptyList(string artist)
         {
             IEnumerable<Album> list = Repository.GetByArtist(artist);
 
@@ -106,7 +110,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData("These Two Windows")]
         [InlineData("Exit")]
-        public void GetByTitle_ShouldReturnListOfAlbums(string expected)
+        public void GetByTitle_GivenExistingTitle_ThenReturnsListOfAlbumsOfTitle(string expected)
         {
             IEnumerable<Album> list = Repository.GetByTitle(expected);
             string actual = ((List<Album>)list)[0].Title;
@@ -117,7 +121,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData("Not an album")]
         [InlineData("tralala")]
-        public void GetByTitle_ShouldReturnEmptyList(string title)
+        public void GetByTitle_GivenNonExistingTitle_ThenReturnsEmptyList(string title)
         {
             IEnumerable<Album> list = Repository.GetByTitle(title);
 
@@ -127,7 +131,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData(2018)]
         [InlineData(2020)]
-        public void GetByYear_ShouldReturnListOfAlbums(int expected)
+        public void GetByYear_GivenExistingYear_ThenReturnsListOfAlbumsOfYear(int expected)
         {
             IEnumerable<Album> list = Repository.GetByYear(expected);
             int actual = ((List<Album>)list)[0].Year;
@@ -138,7 +142,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData(-37)]
         [InlineData(1809)]
-        public void GetByYear_ShouldReturnEmptyList(int year)
+        public void GetByYear_GivenNonExistingYear_ThenReturnsEmptyList(int year)
         {
             IEnumerable<Album> list = Repository.GetByYear(year);
 
@@ -148,7 +152,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData("Pop")]
         [InlineData("Rock")]
-        public void GetByGenre_ShouldReturnListOfAlbums(string expected)
+        public void GetByGenre_GivenExistingGenre_ThenReturnsListOfAlbumsOfGenre(string expected)
         {
             IEnumerable<Album> list = Repository.GetByGenre(expected);
             string actual = ((List<Album>)list)[0].Genre;
@@ -159,7 +163,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData("not a genre")]
         [InlineData("tralala")]
-        public void GetByGenre_ShouldReturnEmptyList(string genre)
+        public void GetByGenre_GivenNonExistingGenre_ThenReturnsEmptyList(string genre)
         {
             IEnumerable<Album> list = Repository.GetByGenre(genre);
 
@@ -169,7 +173,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData("Fueled by Ramen")]
         [InlineData("Free Space Records")]
-        public void GetByRecordLabel_ShouldReturnListOfAlbums(string expected)
+        public void GetByRecordLabel_GivenExistingRecordlabel_ThenReturnsListOfAlbumsOfRecordLabel(string expected)
         {
             IEnumerable<Album> list = Repository.GetByRecordLabel(expected);
             string actual = ((List<Album>)list)[0].RecordLabel;
@@ -180,7 +184,7 @@ namespace Repository1.Tests
         [Theory]
         [InlineData("Not a record label")]
         [InlineData("A record label")]
-        public void GetByRecordLabel_ShouldReturnEmptyList(string recordLabel)
+        public void GetByRecordLabel_GivenNonExistingRecordLabel_ThenReturnsEmptyList(string recordLabel)
         {
             IEnumerable<Album> list = Repository.GetByRecordLabel(recordLabel);
 
@@ -204,11 +208,5 @@ namespace Repository1.Tests
 
             Assert.False(actual);
         }
-
-
-
-
-
-
     }
 }
